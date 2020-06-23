@@ -26,7 +26,7 @@ namespace FileUpdateModelLib
 
         public override void AfterUpdate()
         {
-            UpdateMessage?.Invoke("After Update");
+            UpdateMessage("After Update");
         }
     }
 }

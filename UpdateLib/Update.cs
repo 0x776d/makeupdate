@@ -24,7 +24,7 @@ namespace UpdateLib
 
         public void ExecuteUpdate()
         {
-            UpdateMessage?.Invoke("Trying to load update type!");
+            UpdateMessage("Trying to load update type!");
 
             LoadUpdateModel();
             ExecuteUpdateModel();

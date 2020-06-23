@@ -15,6 +15,11 @@
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Copy
         SourceFiles="@(CompiledFiles)"
+        DestinationFolder="$(SolutionDir)UpdateLibTest\Model"
+        SkipUnchangedFiles="true"
+          />
+    <Copy
+        SourceFiles="@(CompiledFiles)"
         DestinationFolder="$(SolutionDir)MakeUpdate\Model"
         SkipUnchangedFiles="true"
           />

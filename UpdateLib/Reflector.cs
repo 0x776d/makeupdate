@@ -54,8 +54,8 @@ namespace UpdateLib
 
         public UpdateModel GetInstance(string model)
         {
-            if (model == null)
-                throw new LibraryException(ErrorCode.INVALID_MODEL, "Modelname is NULL!");
+            if (string.IsNullOrWhiteSpace(model))
+                throw new LibraryException(ErrorCode.INVALID_MODEL, "Modelname is NULL or Empty!");
 
             Type correctType = null;
 
@@ -74,6 +74,9 @@ namespace UpdateLib
                     break;
                 }
             }
+
+            if (correctType == null)
+                throw new LibraryException(ErrorCode.INVALID_MODEL, $"No existing UpdateModelLib with model '{model}'");
 
             return (UpdateModel)Activator.CreateInstance(correctType);
 
