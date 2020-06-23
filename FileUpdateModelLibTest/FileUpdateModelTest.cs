@@ -1,6 +1,4 @@
 using FileUpdateModelLib;
-using System;
-using UpdateModelLib;
 using Xunit;
 
 namespace FileUpdateModelLibTest
