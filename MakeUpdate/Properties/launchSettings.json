@@ -2,7 +2,7 @@
   "profiles": {
     "MakeUpdate": {
       "commandName": "Project",
-      "commandLineArgs": "appsettings.json -enable -text \"Das ist ein Test\""
+      "commandLineArgs": "appsettings.file.json -source \"C:\\Users\\lwnwim8\\Documents\\GitHub\\makeupdate\\UpdateTestAppNew\\bin\\Debug\" -destination \"C:\\Users\\lwnwim8\\Documents\\GitHub\\makeupdate\\UpdateTestAppOld\\bin\\Debug\" -program \"UpdateTestApp.exe\" -nozip -start"
     }
   }
 }

@@ -48,7 +48,7 @@ namespace UpdateLib
         {
             foreach (Assembly assembly in assemblies)
             {
-                types.Add(assembly.GetType(assembly.DefinedTypes.First().FullName));
+                types.Add(assembly.GetType(assembly.DefinedTypes.First(x => x.FullName.EndsWith("UpdateModel")).FullName));
             }
         }
 
@@ -79,7 +79,6 @@ namespace UpdateLib
                 throw new LibraryException(ErrorCode.INVALID_MODEL, $"No existing UpdateModelLib with model '{model}'");
 
             return (UpdateModel)Activator.CreateInstance(correctType);
-
         }
     }
 }

@@ -10,6 +10,7 @@ namespace UpdateModelLib
 
         private string _model;
 
+        public abstract void LoadArguments();
         public abstract void BeforeUpdate();
         public abstract void Update();
         public abstract void AfterUpdate();

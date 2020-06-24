@@ -43,9 +43,16 @@ namespace UpdateLib
 
         private void ExecuteUpdateModel()
         {
-            _model.BeforeUpdate();
-            _model.Update();
-            _model.AfterUpdate();
+            _model.LoadArguments();
+
+            if (!_config.SkipBeforeUpdate)
+                _model.BeforeUpdate();
+
+            if (!_config.SkipUpdate)
+                _model.Update();
+
+            if (!_config.SkipAfterUpdate)
+                _model.AfterUpdate();
         }
 
         public void Dispose()

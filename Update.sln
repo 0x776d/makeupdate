@@ -5,15 +5,19 @@ VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakeUpdate", "MakeUpdate\MakeUpdate.csproj", "{0EC97A65-F779-4C67-BA44-3A9898B1BAA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateLib", "UpdateLib\UpdateLib.csproj", "{73EECECB-A613-4AF6-9ABD-19B62635308A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateLib", "UpdateLib\UpdateLib.csproj", "{73EECECB-A613-4AF6-9ABD-19B62635308A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateModelLib", "UpdateModelLib\UpdateModelLib.csproj", "{C6B0F2BF-D687-4E9A-8EC0-104A329E7139}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateModelLib", "UpdateModelLib\UpdateModelLib.csproj", "{C6B0F2BF-D687-4E9A-8EC0-104A329E7139}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpdateModelLib", "FileUpdateModelLib\FileUpdateModelLib.csproj", "{2CE0EEB4-8D69-4E55-87D1-BAF9033935A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUpdateModelLib", "FileUpdateModelLib\FileUpdateModelLib.csproj", "{2CE0EEB4-8D69-4E55-87D1-BAF9033935A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpdateModelLibTest", "FileUpdateModelLibTest\FileUpdateModelLibTest.csproj", "{DCACD2E9-38E1-4208-ADD4-AC66709F35E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUpdateModelLibTest", "FileUpdateModelLibTest\FileUpdateModelLibTest.csproj", "{DCACD2E9-38E1-4208-ADD4-AC66709F35E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateLibTest", "UpdateLibTest\UpdateLibTest.csproj", "{6CC7FC4A-E586-48FA-9403-E6570FF3AB5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateLibTest", "UpdateLibTest\UpdateLibTest.csproj", "{6CC7FC4A-E586-48FA-9403-E6570FF3AB5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateTestAppOld", "UpdateTestAppOld\UpdateTestAppOld.csproj", "{0A93C67B-F91B-414B-8701-A363001F0FE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateTestAppNew", "UpdateTestAppNew\UpdateTestAppNew.csproj", "{849B0057-1174-4637-AB02-53803D8EA51E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{6CC7FC4A-E586-48FA-9403-E6570FF3AB5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC7FC4A-E586-48FA-9403-E6570FF3AB5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC7FC4A-E586-48FA-9403-E6570FF3AB5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A93C67B-F91B-414B-8701-A363001F0FE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A93C67B-F91B-414B-8701-A363001F0FE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A93C67B-F91B-414B-8701-A363001F0FE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A93C67B-F91B-414B-8701-A363001F0FE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849B0057-1174-4637-AB02-53803D8EA51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849B0057-1174-4637-AB02-53803D8EA51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849B0057-1174-4637-AB02-53803D8EA51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849B0057-1174-4637-AB02-53803D8EA51E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

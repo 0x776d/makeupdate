@@ -9,20 +9,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <CompiledFiles Include="$(TargetPath)"/>
+    <CompiledFiles Include="$(TargetPath)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.Abstractions" Version="12.0.2" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Copy
-        SourceFiles="@(CompiledFiles)"
-        DestinationFolder="$(SolutionDir)UpdateLibTest\Model"
-        SkipUnchangedFiles="true"
-          />
-    <Copy
-        SourceFiles="@(CompiledFiles)"
-        DestinationFolder="$(SolutionDir)MakeUpdate\Model"
-        SkipUnchangedFiles="true"
-          />
+    <Copy SourceFiles="@(CompiledFiles)" DestinationFolder="$(SolutionDir)UpdateLibTest\Model" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(CompiledFiles)" DestinationFolder="$(SolutionDir)MakeUpdate\Model" SkipUnchangedFiles="true" />
   </Target>
 
 </Project>
