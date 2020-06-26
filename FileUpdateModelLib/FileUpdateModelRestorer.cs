@@ -1,32 +1,59 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace FileUpdateModelLib
 {
     public class FileUpdateModelRestorer
     {
-        private readonly string _tempBackupDirectory;
-        private FileUpdateModelConfig _fileUpdateConfig;
+        private readonly string _destination;
 
-        public FileUpdateModelRestorer(FileUpdateModelConfig config)
+        public FileUpdateModelRestorer(string destination)
         {
-            _fileUpdateConfig = config;
-            _tempBackupDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            Directory.CreateDirectory(_tempBackupDirectory);
+            if (!Directory.Exists(destination))
+                throw new Exception("Destination directory does not exist!");
+
+            _destination = destination;
+            BackupDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         }
+
+        public string BackupDirectory { get; }
 
         public void Backup()
         {
-            DirectoryInfo directory = new DirectoryInfo(_fileUpdateConfig.Destination);
+            Directory.CreateDirectory(BackupDirectory);
+            DirectoryInfo directory = new DirectoryInfo(_destination);
 
-            foreach (var file in directory.GetFiles())
+            try
             {
-                file.CopyTo(Path.Combine(_tempBackupDirectory, file.Name));
+                foreach (var file in directory.GetFiles())
+                {
+                    file.CopyTo(Path.Combine(BackupDirectory, file.Name));
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                throw new Exception("Destination folder not found!");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Not able to create backup files!");
             }
         }
 
         public void ClearBackup()
         {
-            Directory.Delete(_tempBackupDirectory, true);
+            try
+            {
+                Directory.Delete(BackupDirectory, true);
+            }
+            catch (DirectoryNotFoundException)
+            {
+                throw new Exception("No backup found!");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Not able to clear backup!");
+            }
         }
 
         public void Rollback()
@@ -37,26 +64,44 @@ namespace FileUpdateModelLib
 
         private void ClearDestination()
         {
-            DirectoryInfo directory = new DirectoryInfo(_fileUpdateConfig.Destination);
+            DirectoryInfo directory = new DirectoryInfo(_destination);
 
-            foreach (var file in directory.GetFiles())
+            try
             {
-                file.Delete();
+                foreach (var file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
+
+                foreach (var dir in directory.GetDirectories())
+                {
+                    dir.Delete(true);
+                }
             }
-
-            foreach (var dir in directory.GetDirectories())
+            catch (DirectoryNotFoundException)
             {
-                dir.Delete(true);
+                throw new Exception("Destination folder not found!");
+            }
+            catch (Exception)
+            {
+                throw new Exception("Not able to clear destination folder!");
             }
         }
 
         private void RestoreFiles()
         {
-            DirectoryInfo directory = new DirectoryInfo(_tempBackupDirectory);
+            DirectoryInfo directory = new DirectoryInfo(BackupDirectory);
 
-            foreach (var file in directory.GetFiles())
+            try
             {
-                file.CopyTo(Path.Combine(_fileUpdateConfig.Destination, file.Name));
+                foreach (var file in directory.GetFiles())
+                {
+                    file.CopyTo(Path.Combine(_destination, file.Name));
+                }
+            }
+            catch (Exception)
+            {
+                throw new Exception("Not able to restore files!");
             }
         }
     }

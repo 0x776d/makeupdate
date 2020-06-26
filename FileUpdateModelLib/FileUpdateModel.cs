@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArgumentsLib;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -19,19 +20,22 @@ namespace FileUpdateModelLib
 
         public FileUpdateModel()
         {
+
+        }
+
+        public FileUpdateModel(Arguments arguments)
+        {
             base.Model = _model;
+            base.Arguments = arguments;
             _isRolledBack = false;
+
+            _fileUpdateConfig = new FileUpdateModelConfig(base.Arguments);
+            _fileUpdateChecker = new FileUpdateModelChecker(_fileUpdateConfig);
+            _fileUpdateRestorer = new FileUpdateModelRestorer(_fileUpdateConfig.Destination);
+            _fileUpdateUpdater = new FileUpdateModelUpdater(_fileUpdateConfig.Destination, _fileUpdateConfig.Source);
         }
 
         public override event WriteLine UpdateMessage;
-
-        public override void LoadArguments()
-        {
-            _fileUpdateConfig = new FileUpdateModelConfig(base.Arguments);
-            _fileUpdateChecker = new FileUpdateModelChecker(_fileUpdateConfig);
-            _fileUpdateRestorer = new FileUpdateModelRestorer(_fileUpdateConfig);
-            _fileUpdateUpdater = new FileUpdateModelUpdater(_fileUpdateConfig);
-        }
 
         public override void BeforeUpdate()
         {

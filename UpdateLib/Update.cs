@@ -33,18 +33,15 @@ namespace UpdateLib
         private void LoadUpdateModel()
         {
             if (!string.IsNullOrWhiteSpace(_config.Model))
-                _model = _reflector.GetInstance(_config.Model);
+                _model = _reflector.GetInstance(_config.Model, _arguments);
             else
-                _model = _reflector.GetInstance(_arguments.GetValue<string>("using"));
+                _model = _reflector.GetInstance(_arguments.GetValue<string>("using"), _arguments);
 
-            _model.Arguments = _arguments;
             _model.UpdateMessage += UpdateMessage;
         }
 
         private void ExecuteUpdateModel()
         {
-            _model.LoadArguments();
-
             if (!_config.SkipBeforeUpdate)
                 _model.BeforeUpdate();
 

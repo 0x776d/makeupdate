@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ArgumentsLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,7 +53,7 @@ namespace UpdateLib
             }
         }
 
-        public UpdateModel GetInstance(string model)
+        public UpdateModel GetInstance(string model, Arguments arguments)
         {
             if (string.IsNullOrWhiteSpace(model))
                 throw new LibraryException(ErrorCode.INVALID_MODEL, "Modelname is NULL or Empty!");
@@ -78,7 +79,7 @@ namespace UpdateLib
             if (correctType == null)
                 throw new LibraryException(ErrorCode.INVALID_MODEL, $"No existing UpdateModelLib with model '{model}'");
 
-            return (UpdateModel)Activator.CreateInstance(correctType);
+            return (UpdateModel)Activator.CreateInstance(correctType, arguments);
         }
     }
 }

@@ -8,24 +8,26 @@ namespace FileUpdateModelLib
 {
     public class FileUpdateModelChecker
     {
-        private readonly string _tempSourceDirectory;
+        private readonly string _sourceDirectory;
         private FileUpdateModelConfig _fileUpdateConfig;
 
         public FileUpdateModelChecker(FileUpdateModelConfig config)
         {
             _fileUpdateConfig = config;
-            _tempSourceDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            _sourceDirectory = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
         }
+
+        public string SourceDirectory => _sourceDirectory;
 
         public void UnpackSource()
         {
-            Directory.CreateDirectory(_tempSourceDirectory);
-            ZipFile.ExtractToDirectory(_fileUpdateConfig.Source, _tempSourceDirectory);
+            Directory.CreateDirectory(_sourceDirectory);
+            ZipFile.ExtractToDirectory(_fileUpdateConfig.Source, _sourceDirectory);
         }
 
         public void ClearSource()
         {
-            Directory.Delete(_tempSourceDirectory, true);
+            Directory.Delete(_sourceDirectory, true);
         }
 
         public void CheckVersion()
@@ -55,7 +57,7 @@ namespace FileUpdateModelLib
                         if (_fileUpdateConfig.NoZip)
                             path = _fileUpdateConfig.Source;
                         else
-                            path = _tempSourceDirectory;
+                            path = _sourceDirectory;
 
                         sourceVersion = GetFileVersion(path);
 
